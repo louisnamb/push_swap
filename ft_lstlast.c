@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/10/31 15:07:17 by lnambaji         ###   ########.fr       */
+/*   Created: 2022/02/07 17:26:50 by lnambaji          #+#    #+#             */
+/*   Updated: 2023/10/31 11:48:02 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new, int index)
+t_list	*ft_lstlast(t_list *lst)
 {
-    if (!lst)
-        return;
-    if (*lst)
-    {
-        t_list *new_list = *lst;
-        while (new_list->next)
-            new_list = new_list->next;
-        new_list->next = new;
-        new->index = index;
-    }
-    else
-    {
-        *lst = new;
-		(*lst)->prev = NULL;
-        (*lst)->index = index;
-    }
+	if (!lst)
+		return (NULL);
+	while (lst != NULL)
+	{
+		if (lst->next == NULL)
+			return (lst);
+		printf("content: %d\n", lst->content);
+		lst = lst->next;
+	}
+	return (lst);
 }
