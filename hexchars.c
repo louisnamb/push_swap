@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:18:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/10/30 16:03:48 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:01:55 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	ft_hputstr(char *s, int fd, int length, int ptr)
 	int	sum;
 	int	i;
 
-	i = 0;
 	(void)ptr;
+	i = 0;
 	sum = 0;
 	if (!s)
 		return (0);
