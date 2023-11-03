@@ -6,13 +6,13 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/02 16:08:17 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:25:06 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int		printlist(t_list **stack_a, int len)
+int		printlist(t_list **stack_a, int len, int a_or_b)
 {
 	t_list	*iterator;
 
@@ -26,7 +26,7 @@ int		printlist(t_list **stack_a, int len)
 			len--;
 		}
 	}
-	printf("----\n    a\n");
+	printf("----\n    %c\n", a_or_b);
 	printf("---------------\n");
 	return (0);
 }
@@ -97,24 +97,25 @@ int		error_check(char **argv, int argc)
 
 int main(int argc, char **argv)
 {
-	int		len;
-	t_list	*stack_a;
-//	t_list	*stack_b;
+	t_list		*stack_a;
+	t_general	*main;
 
-	stack_a = NULL;
-	len = error_check(argv, argc);
+	main = malloc(sizeof(t_general));
+	main->len = error_check(argv, argc);
 	if (argc <= 1 || !argv)
 	{
 		perror("Error\n");
 		exit(EXIT_FAILURE);
 	}
 //	stack_a = malloc(sizeof(t_list));
-	if (len)
+	if (main->len)
 	{
 		stack_a = create_stacks((argc == 2) + 1, argv);
-		sort_which(&stack_a, len);
+	//	stack_b = malloc(sizeof(t_list));
+		sort_which(&stack_a, &stack_a, main);
 	}
-	printlist(&stack_a, len);
+	printlist(&stack_a, main->len, 'a');
+	
 	//free everything
 	return (0);
 }
