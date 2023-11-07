@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/02 12:57:12 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:37:26 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 void	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
 {
+    t_list  *end;
+
     if (!start || !new_node)
         return;
     if (*start)
     {
-        t_list *end = (*start)->prev;
+        end = (*start)->prev;//make end equal the end
         end->next = new_node;
         new_node->next = *start;
         new_node->index = index;

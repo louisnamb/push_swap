@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/03 14:25:06 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:26:52 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ t_list	*create_stacks(int option, char **argv)
 		tmp = NULL;
 		i++;
 	}
+//	stack_a->next = stack_a->prev;
+	//stack_a->prev = stack_a;
     return (stack_a);
 }
 
