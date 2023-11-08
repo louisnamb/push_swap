@@ -6,19 +6,21 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/08 11:21:10 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:16:01 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 #include "../inc/push_swap.h"
 
-void	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
+int	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
 {
     t_list  *end;
 
     if (!start || !new_node)
-        return;
+        return (0);
+    if (is_repeating(start, new_node))
+        return (1);
     if (*start)
     {
         end = (*start)->prev;//make end equal the end node
@@ -36,5 +38,5 @@ void	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
     //     *start = new_node;
     // }
   //  printf("back - new_node->index: %zu index: %zu\n", new_node->index, index);
-    return ;
+    return (0);
 }
