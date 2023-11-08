@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/03 14:20:21 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:15:24 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int     stack_len(t_list **stack)
     int     i;
     t_list  *tmp;
 
-    i = 0;
+    i = 1;
     tmp = (*stack);
-    if (!stack)
-        return (-1);
-    while (tmp->content != (*stack)->content || i == 0)
+    if (!stack || !*stack)
+        return (0);
+    while (tmp != (*stack) || i == 1)
     {
-        tmp = tmp->next;
         i++;
+        tmp = tmp->next;
     }
     return (i);
 }
@@ -55,5 +55,6 @@ void    sort_which(t_list **stack_a, t_list **stack_b, t_general *main)
 //    printf("<---//--->\n");
  //   printlist(stack_a, main->len);
     printlist(stack_b, main->len, 'b');
+    printlist(stack_a, main->len, 'a');
     return ;
 }

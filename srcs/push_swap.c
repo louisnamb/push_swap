@@ -6,29 +6,37 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/07 15:26:52 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:15:03 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int		printlist(t_list **stack_a, int len, int a_or_b)
+int		printlist(t_list **stack, int len, int a_or_b)
 {
-	t_list	*iterator;
+    int     i;
+    t_list  *tmp;
 
-	if (*stack_a)
+    i = 0;
+	(void)len;
+    tmp = (*stack);
+    if (!stack || !*stack)
 	{
-		iterator = *stack_a;
-		while (iterator && len)
-		{
-			printf("[%zu] %d\n", iterator->index, iterator->content);
-			iterator = iterator->next;
-			len--;
-		}
+		printf("EMPTY STACK\n");
+		printf("----\n    %c\n", a_or_b);
+		printf("---------------\n");
+        return (0);
 	}
+    do
+    {
+		printf("[%zu] %d\n", tmp->index, tmp->content);
+        i++;
+        tmp = tmp->next;
+    }
+	while (tmp != (*stack));
 	printf("----\n    %c\n", a_or_b);
 	printf("---------------\n");
-	return (0);
+	return (i);
 }
 
 t_list	*create_stacks(int option, char **argv)
@@ -101,7 +109,9 @@ int main(int argc, char **argv)
 {
 	t_list		*stack_a;
 	t_general	*main;
+	t_list		*stack_b;
 
+	stack_b = NULL;
 	main = malloc(sizeof(t_general));
 	main->len = error_check(argv, argc);
 	if (argc <= 1 || !argv)
@@ -114,9 +124,13 @@ int main(int argc, char **argv)
 	{
 		stack_a = create_stacks((argc == 2) + 1, argv);
 	//	stack_b = malloc(sizeof(t_list));
-		sort_which(&stack_a, &stack_a, main);
+	//	printlist(&stack_a, main->len, 'a');
+		sort_which(&stack_a, &stack_b, main);
+	//	push(&stack_a, &stack_b, main);
+	//	printlist(&stack_b, main->len, 'b');
+	//	printlist(&stack_a, main->len, 'a');
 	}
-	printlist(&stack_a, main->len, 'a');
+//	printlist(&stack_a, main->len, 'a');
 	
 	//free everything
 	return (0);
