@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/08 16:15:38 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:25:47 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,35 @@ int		printlist(t_list **stack, int len, int a_or_b)
 	printf("---------------\n");
 	return (i);
 }
+// int		printlist(t_list **stack, t_list **stack_b, int a_or_b)
+// {
+//     int     i;
+//     t_list  *tmp;
+// 	t_list	*tmp_b;
+
+//     i = 0;
+//     tmp = (*stack);
+// 	(void)a_or_b;
+//     if (!stack || !*stack || !stack_b || !(*stack_b))
+// 	{
+// 		printf("EMPTY STACK\n");
+// 		printf("----\n    %c\n", 'b');
+// 		printf("---------------\n");
+//         return (0);
+// 	}
+// 	tmp_b = (*stack_b);
+//     do
+//     {
+// 		printf("[%zu] %d\t\t\t[%zu] %d\n", tmp->index, tmp->content, tmp_b->index, tmp_b->content);
+//         i++;
+//         tmp = tmp->next;
+// 		tmp_b = tmp_b->next;
+//     }
+// 	while (tmp != (*stack) && tmp_b != (*stack_b));
+// 	printf("----\n    %c\t\t\t----\n    %c\n", 'a', 'b');
+// 	printf("---------------\n");
+// 	return (i);
+// }
 
 t_list	*create_stacks(int option, char **argv)
 {

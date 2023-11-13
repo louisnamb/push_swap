@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/08 15:06:12 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:00:16 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	push(t_list **stack_a, t_list **stack_b, t_gen *main)//does push_b
         tmp->prev = tmp;
         tmp->next = tmp;
     }
-	                                                                                            else {
+	else {
         tmp->next = (*stack_b);//put tmp above stack_b
         tmp->prev = (*stack_b)->prev;//make tmp prev point to the bottom node
         (*stack_b)->prev->next = tmp;//make bottom node point to top node
@@ -82,7 +82,7 @@ void	push(t_list **stack_a, t_list **stack_b, t_gen *main)//does push_b
 	(*stack_b) = tmp;//update tmp as the top node
 	update_index(stack_a);
 	update_index(stack_b);
-	printf("pa");
+	printf("pa\n");
 	return ;
 }
 

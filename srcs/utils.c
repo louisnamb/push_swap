@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:50:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/08 16:16:07 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:07:14 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,35 @@ int    is_repeating(t_list **stack, t_list *new_node)
 		tmp = tmp->next;
 	}
 	return (0);
+}
+
+int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
+{
+	int     i;
+	t_list  *tmp;
+	int		prev_max;
+	int		curr_max;
+	int		tmp_data;
+
+	i = 1;
+	prev_max = 0;
+	(void)sb;
+	(void)main;
+	tmp = (*sa);
+	if (!sa || !*sa)
+		return (0);
+	while (tmp != (*sa) || i++ == 1)
+	{
+		curr_max = 0;
+		tmp_data = tmp->content;
+		while (tmp_data > 0)
+		{
+			tmp_data = tmp_data >> 1;
+			curr_max++;
+		}
+		if (curr_max > prev_max)
+			prev_max = curr_max;
+		tmp = tmp->next;
+	}
+	return (prev_max);
 }
