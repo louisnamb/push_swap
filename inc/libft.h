@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:14:34 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/02 12:12:39 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:00:32 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 void		ft_lstadd_front(t_list **alst, t_list *new);
 
-void		ft_lstadd_back(t_list **lst, t_list *new, size_t index);
+int			ft_lstadd_back(t_list **start, t_list *new_node, size_t index);
 
 void		ft_lstdelone(t_list *lst, void (*del)(void*));
 
