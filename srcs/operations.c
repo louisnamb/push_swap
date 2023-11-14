@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/14 13:54:21 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:46:06 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ void	push(t_list **stack_a, t_list **stack_b, t_gen *main)//does push_b
 		(*stack_b)->prev = tmp;//the original top node point to tmp
     }
 	(*stack_b) = tmp;//update tmp as the top node
-	update_index(stack_a, main);
+	if (stack_len(stack_a))
+		update_index(stack_a, main);
+	else
+		stack_a = NULL;
 	update_index(stack_b, main);
 	printf("pa\n");
 	return ;
@@ -130,10 +133,9 @@ void	rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
 	return ;
 }
 
-void	reverse_rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
+//void	reverse_rotate(t_list **stack_a), t_list **stack_b, t_gen *main)
+void	reverse_rotate(t_list **stack_a, t_gen *main)
 {
-	(void)main;
-	(void)stack_b;
 	if (!(*stack_a))
 		return ;
 	(*stack_a) = (*stack_a)->prev;

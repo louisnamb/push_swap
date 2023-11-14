@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/14 14:21:57 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:34:55 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ int main(int argc, char **argv)
 		perror("Error\n");
 		exit(EXIT_FAILURE);
 	}
+	
 	if (main->len)
 	{
 		stack_a = create_stacks((argc == 2) + 1, argv);

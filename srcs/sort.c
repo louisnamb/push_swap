@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/14 14:20:16 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:59:10 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,34 @@ void	radix(t_list **sa, t_list **sb, t_gen *main, int bitmask)
 	b_len = stack_len(sb);
 	while (b_len)
 	{
-		reverse_rotate(sb, sa, main);
+		reverse_rotate(sb, main);//, sa, main);
+		printlist(sa, main->len, 'a');
+		printlist(sb, main->len, 'b');
 		if ((*sb)->content & bitmask)
 		{
 			push(sb, sa, main);
+			printlist(sa, main->len, 'a');
+			printlist(sb, main->len, 'b');
 			rotate(sa, sb, main);
+			printlist(sa, main->len, 'a');
+			printlist(sb, main->len, 'b');
 		}
 		b_len--;
 	}
 	while (a_len)
 	{
 		if ((*sa)->content & bitmask)
+		{
 			rotate(sa, sb, main);
+			printlist(sa, main->len, 'a');
+			printlist(sb, main->len, 'b');
+		}
 		else
+		{
 			push(sa, sb, main);
+			printlist(sa, main->len, 'a');
+			printlist(sb, main->len, 'b');
+		}
 		a_len--;
 	}
 	return ;
@@ -58,7 +72,7 @@ void    sort_three(t_list **sa, t_list **sb, t_gen *main)
 		if ((*sa)->next->content > (*sa)->prev->content && (*sa)->next->content < (*sa)->content)
 			swap(sa, sb, main);
 		if ((*sa)->next->content > (*sa)->content)
-			reverse_rotate(sa, sb, main);
+			reverse_rotate(sa, main);//, sb, main);
 		else
 			rotate(sa, sb, main);
 	}
@@ -87,12 +101,11 @@ void    sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
 	{
 		while (num_bits > 0)
 		{
-			printf("bitmask: %d\n", bitmask);
+		//	printf("bitmask: %d\n", bitmask);
 		//	printf("\033[1;34mBEFORE:[0m\n");
-			printlist(stack_a, main->len, 'a');
-			printlist(stack_b, main->len, 'b');
+		//	printlist(stack_a, main->len, 'a');
+		//	printlist(stack_b, main->len, 'b');
 			radix(stack_a, stack_b, main, bitmask);
-			printf("\033[1;34m----------\n\033[0m\n");
 			bitmask = bitmask * 2;
 			num_bits--;
 		}
