@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/13 15:25:47 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:21:57 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int		printlist(t_list **stack, int len, int a_or_b)
         tmp = tmp->next;
     }
 	while (tmp != (*stack));
-	printf("----\n    %c\n", a_or_b);
-	printf("---------------\n");
+	printf("----\n    %c (%d)\n", a_or_b, a_or_b == 'a');
 	return (i);
 }
 // int		printlist(t_list **stack, t_list **stack_b, int a_or_b)
@@ -100,6 +99,7 @@ t_list	*create_stacks(int option, char **argv)
 			free_stack(&stack_a);
 			return (&(t_list){NULL, 0, 0, NULL});
 		}
+	//	printf("stack_a: %d\n", stack_a->content);
 		tmp = NULL;
 		i++;
 	}
@@ -145,6 +145,7 @@ int main(int argc, char **argv)
 	stack_b = NULL;
 	main = malloc(sizeof(t_gen));
 	main->len = error_check(argv, argc);
+	//printf("main->len: %d\n", main->len);
 	if (argc <= 1 || !argv)
 	{
 		perror("Error\n");

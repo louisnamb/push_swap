@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/08 16:16:01 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:29:39 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,6 @@ int	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
         new_node->prev = end;//make the new nodes prev point above at the original end node
         (*start)->prev = new_node;//make the start node point to the new end node called new node
     }
-    // else
-    // {
-	// 	new_node->prev = new_node;
-    //     new_node->next = new_node;
-    //     new_node->index = index;
-    //     *start = new_node;
-    // }
-  //  printf("back - new_node->index: %zu index: %zu\n", new_node->index, index);
+ //   printf("added: %d\n", new_node->content);
     return (0);
 }

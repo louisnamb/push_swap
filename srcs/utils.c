@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:50:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/13 13:07:14 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:47:58 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,23 @@ int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
 		tmp = tmp->next;
 	}
 	return (prev_max);
+}
+
+int     stack_len(t_list **stack)
+{
+	int     i;
+	t_list  *tmp;
+
+	i = 0;
+	tmp = (*stack);
+	if (!stack || !(*stack))
+		return (0);
+	while (tmp != (*stack) || i == 0)
+	{
+	//	printf("content: %d\n", tmp->content);
+		tmp = tmp->next;
+		i++;
+	}
+//	printf("stack_len - i: %d\n", i);
+	return (i);
 }

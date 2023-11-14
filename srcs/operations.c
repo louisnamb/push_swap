@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/13 14:00:16 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:54:21 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ int	is_sorted(t_list **stack_a)
 	return (1);
 }
 
+void	update_index(t_list **stack, t_gen *main)
+{
+    int     i;
+    t_list  *tmp;
+	int		s_len;
+
+    i = 1;
+	s_len = stack_len(stack);
+    tmp = (*stack);
+    if (!stack || !*stack)
+        return ;
+	(void)main;
+    while ((tmp != (*stack) || i == 1) && i <= s_len)
+    {
+		tmp->index = i;
+        tmp = tmp->next;
+        i++;
+    }
+    return ;
+}
+
 // Does swap for the first argument
 void    swap(t_list **stack_a, t_list **stack_b, t_gen *main)
 {
@@ -47,7 +68,7 @@ void    swap(t_list **stack_a, t_list **stack_b, t_gen *main)
 	first = (*stack_a)->next;
 	(*stack_a)->content = first->content;
 	first->content = tmp;
-	update_index(stack_a);
+//	update_index(stack_a, main);
 	printf("sa\n");
 	return ;
 }
@@ -66,22 +87,24 @@ void	push(t_list **stack_a, t_list **stack_b, t_gen *main)//does push_b
 	if (!(*stack_a))
 		return ;
 	tmp = (*stack_a);
+//	printf("1: %d 2: %d\n", main->len, stack_len(stack_a));//, (*stack_b) == NULL);
     (*stack_a)->next->prev = (*stack_a)->prev;//make the second node point to the bottom node
     (*stack_a)->prev->next = (*stack_a)->next;//make the bottom node point to the second node
 	(*stack_a) = (*stack_a)->next;
-    if (main->len == stack_len(stack_a) && !(*stack_b)) {
+    if ((*stack_b) == NULL) {
         tmp->prev = tmp;
         tmp->next = tmp;
     }
-	else {
+	else//((*stack_b))
+	{
         tmp->next = (*stack_b);//put tmp above stack_b
         tmp->prev = (*stack_b)->prev;//make tmp prev point to the bottom node
         (*stack_b)->prev->next = tmp;//make bottom node point to top node
 		(*stack_b)->prev = tmp;//the original top node point to tmp
     }
 	(*stack_b) = tmp;//update tmp as the top node
-	update_index(stack_a);
-	update_index(stack_b);
+	update_index(stack_a, main);
+	update_index(stack_b, main);
 	printf("pa\n");
 	return ;
 }
@@ -94,24 +117,6 @@ rotate ra:
 3		4
 */
 
-void	update_index(t_list **stack)
-{
-    int     i;
-    t_list  *tmp;
-
-    i = 1;
-    tmp = (*stack);
-    if (!stack || !*stack)
-        return ;
-    while (tmp != (*stack) || i == 1)
-    {
-		tmp->index = i;
-        i++;
-        tmp = tmp->next;
-    }
-    return ;
-}
-
 /*swaps first argument given*/
 void	rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
 {
@@ -120,7 +125,7 @@ void	rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
 	if (!(*stack_a))
 		return ;
 	(*stack_a) = (*stack_a)->next;
-	update_index(stack_a);
+	update_index(stack_a, main);
 	printf("ra\n");
 	return ;
 }
@@ -132,7 +137,7 @@ void	reverse_rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
 	if (!(*stack_a))
 		return ;
 	(*stack_a) = (*stack_a)->prev;
-	update_index(stack_a);
+	update_index(stack_a, main);
 	printf("rra\n");
 	return ;
 }
