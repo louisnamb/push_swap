@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:14:34 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/08 16:00:32 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:21:50 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # endif
 
 typedef struct s_list
-{
-	
+{	
 	struct s_list	*prev;
 	int				content;
 	size_t			index;
+	char			id;
 	struct s_list	*next;
 }	t_list;
 
