@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/14 15:34:55 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:02:31 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ int		printlist(t_list **stack, int len, int a_or_b)
 	{
 		printf("EMPTY STACK\n");
 		printf("----\n    %c\n", a_or_b);
-		printf("---------------\n");
         return (0);
 	}
     do
     {
-		printf("[%zu] %d\n", tmp->index, tmp->content);
+		printf("[%zu] %d (%c)\n", tmp->index, tmp->content, tmp->id);
         i++;
         tmp = tmp->next;
     }
@@ -79,7 +78,7 @@ t_list	*create_stacks(int option, char **argv)
     stack_a->next = stack_a;
 	stack_a->prev = stack_a;
     if (!stack_a || !ft_strlen(argv[1]))
-       return (&(t_list){NULL, 0, 0, NULL});
+       return (&(t_list){NULL, 0, 0, ' ', NULL});
     if (option == 2)
 	{
 		i = 0;
@@ -89,17 +88,17 @@ t_list	*create_stacks(int option, char **argv)
         elem = argv;
     stack_a->content = ft_atoi(elem[i++]);
 	stack_a->index = 1;
+	stack_a->id = 'a';
     while (elem[i])
 	{
 		tmp = ft_lstnew(ft_atoi(elem[i]));
 		if (!tmp)
-			return (&(t_list){NULL, 0, 0, NULL});
+			return (&(t_list){NULL, 0, 0, ' ', NULL});
         if (ft_lstadd_back(&stack_a, tmp, i + (option == 2)))
 		{
 			free_stack(&stack_a);
-			return (&(t_list){NULL, 0, 0, NULL});
+			return (&(t_list){NULL, 0, 0, ' ', NULL});
 		}
-	//	printf("stack_a: %d\n", stack_a->content);
 		tmp = NULL;
 		i++;
 	}
@@ -138,20 +137,18 @@ int		error_check(char **argv, int argc)
 int main(int argc, char **argv)
 {
 	t_list		*stack_a;
-	t_gen	*main;
+	t_gen		*main;
 	t_list		*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;
 	main = malloc(sizeof(t_gen));
 	main->len = error_check(argv, argc);
-	//printf("main->len: %d\n", main->len);
 	if (argc <= 1 || !argv)
 	{
 		perror("Error\n");
 		exit(EXIT_FAILURE);
 	}
-	
 	if (main->len)
 	{
 		stack_a = create_stacks((argc == 2) + 1, argv);

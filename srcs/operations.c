@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/14 15:46:06 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:32:39 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	update_index(t_list **stack, t_gen *main)
 	int		s_len;
 
     i = 1;
-	s_len = stack_len(stack);
+	s_len = stack_len(stack, main);
     tmp = (*stack);
     if (!stack || !*stack)
         return ;
@@ -69,7 +69,7 @@ void    swap(t_list **stack_a, t_list **stack_b, t_gen *main)
 	(*stack_a)->content = first->content;
 	first->content = tmp;
 //	update_index(stack_a, main);
-	printf("sa\n");
+	printf("s%c\n", (*stack_a)->id);
 	return ;
 }
 
@@ -84,31 +84,36 @@ void	push(t_list **stack_a, t_list **stack_b, t_gen *main)//does push_b
 {
 	t_list	*tmp;
 
-	if (!(*stack_a))
+	if (!(*stack_a) || !stack_a)
 		return ;
 	tmp = (*stack_a);
 //	printf("1: %d 2: %d\n", main->len, stack_len(stack_a));//, (*stack_b) == NULL);
-    (*stack_a)->next->prev = (*stack_a)->prev;//make the second node point to the bottom node
-    (*stack_a)->prev->next = (*stack_a)->next;//make the bottom node point to the second node
-	(*stack_a) = (*stack_a)->next;
+	if (stack_len(stack_a, main) > 1 && stack_len(stack_b, main) != main->len - 1)
+	{
+		(*stack_a)->next->prev = (*stack_a)->prev;//make the second node point to the bottom node
+    	(*stack_a)->prev->next = (*stack_a)->next;//make the bottom node point to the second node
+		(*stack_a) = (*stack_a)->next;
+	}
+	else
+		*stack_a = NULL;
     if ((*stack_b) == NULL) {
         tmp->prev = tmp;
         tmp->next = tmp;
+		tmp->id = 'b';
     }
 	else//((*stack_b))
 	{
         tmp->next = (*stack_b);//put tmp above stack_b
         tmp->prev = (*stack_b)->prev;//make tmp prev point to the bottom node
+		tmp->id = (*stack_b)->id;
         (*stack_b)->prev->next = tmp;//make bottom node point to top node
 		(*stack_b)->prev = tmp;//the original top node point to tmp
     }
 	(*stack_b) = tmp;//update tmp as the top node
-	if (stack_len(stack_a))
+	if (stack_len(stack_a, main) > 1)
 		update_index(stack_a, main);
-	else
-		stack_a = NULL;
 	update_index(stack_b, main);
-	printf("pa\n");
+	printf("p%c\n", (*stack_b)->id);
 	return ;
 }
 
@@ -129,7 +134,7 @@ void	rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
 		return ;
 	(*stack_a) = (*stack_a)->next;
 	update_index(stack_a, main);
-	printf("ra\n");
+	printf("r%c\n", (*stack_a)->id);
 	return ;
 }
 
@@ -140,7 +145,7 @@ void	reverse_rotate(t_list **stack_a, t_gen *main)
 		return ;
 	(*stack_a) = (*stack_a)->prev;
 	update_index(stack_a, main);
-	printf("rra\n");
+	printf("rr%c\n", (*stack_a)->id);
 	return ;
 }
 

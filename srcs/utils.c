@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:50:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/14 13:47:58 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:27:50 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,17 @@ int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
 	return (prev_max);
 }
 
-int     stack_len(t_list **stack)
+int     stack_len(t_list **stack, t_gen *main)
 {
 	int     i;
 	t_list  *tmp;
 
 	i = 0;
-	tmp = (*stack);
+	(void)main;
 	if (!stack || !(*stack))
 		return (0);
-	while (tmp != (*stack) || i == 0)
+	tmp = *stack;
+	while (tmp != (*stack) || i == 0)// && tmp->next != tmp)// && i <= main->len)
 	{
 	//	printf("content: %d\n", tmp->content);
 		tmp = tmp->next;

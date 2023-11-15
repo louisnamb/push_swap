@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/14 13:29:39 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:32:00 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
 {
     t_list  *end;
 
-    if (!start || !new_node)
+    if (!start || !new_node || !(*start))
         return (0);
     if (is_repeating(start, new_node))
         return (1);
@@ -27,6 +27,7 @@ int	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
         end->next = new_node;//make end node point to the new node
         new_node->next = *start;//make the new node point up to the start node
         new_node->index = index;//update index
+        new_node->id = 'a';
         new_node->prev = end;//make the new nodes prev point above at the original end node
         (*start)->prev = new_node;//make the start node point to the new end node called new node
     }

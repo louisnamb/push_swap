@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:19:34 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/02 12:53:16 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:15:43 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*ft_lstnew(int content)
 		return (NULL);
 	node->content = content;
 	node->next = NULL;
+	node->id = 'a';
 	node->prev = NULL;
 	return (node);
 }
