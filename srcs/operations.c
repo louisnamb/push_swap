@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/15 15:32:39 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:02:00 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ rotate ra:
 */
 
 /*swaps first argument given*/
-void	rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
+void	rotate(t_list **stack_a, t_list **stack_b, t_gen *main, int yes)
 {
 	(void)main;
 	(void)stack_b;
@@ -134,24 +134,38 @@ void	rotate(t_list **stack_a, t_list **stack_b, t_gen *main)
 		return ;
 	(*stack_a) = (*stack_a)->next;
 	update_index(stack_a, main);
-	printf("r%c\n", (*stack_a)->id);
+	if (yes)
+		printf("r%c\n", (*stack_a)->id);
 	return ;
 }
 
 //void	reverse_rotate(t_list **stack_a), t_list **stack_b, t_gen *main)
-void	reverse_rotate(t_list **stack_a, t_gen *main)
+void	reverse_rotate(t_list **stack_a, t_gen *main, int yes)
 {
 	if (!(*stack_a))
 		return ;
 	(*stack_a) = (*stack_a)->prev;
 	update_index(stack_a, main);
-	printf("rr%c\n", (*stack_a)->id);
+	if (yes)
+		printf("rr%c\n", (*stack_a)->id);
 	return ;
 }
 
-void    both(t_list **sa, t_list **sb, t_gen *m, void(*func)(t_list **, t_list **, t_gen *))
+void    both(t_list **sa, t_list **sb, t_gen *m, int which)
 {
-	func(sa, sb, m);
-	func(sb, sa, m);
+	const char	operations[3][4] = {"rrr", "ss", "rr"};
+	if (which == 0)
+	{
+		reverse_rotate(sa, m, 0);
+		reverse_rotate(sb, m, 0);
+	}
+//	func(sb, sa, m);
+	printf("%s\n", operations[which]);
 	return ;
 }
+
+/*
+500 numbers: 1501
+100 numbers: 351
+5 numbers: 20
+*/

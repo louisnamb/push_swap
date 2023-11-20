@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/15 16:02:31 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:52:39 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,6 @@ int		printlist(t_list **stack, int len, int a_or_b)
 	printf("----\n    %c (%d)\n", a_or_b, a_or_b == 'a');
 	return (i);
 }
-// int		printlist(t_list **stack, t_list **stack_b, int a_or_b)
-// {
-//     int     i;
-//     t_list  *tmp;
-// 	t_list	*tmp_b;
-
-//     i = 0;
-//     tmp = (*stack);
-// 	(void)a_or_b;
-//     if (!stack || !*stack || !stack_b || !(*stack_b))
-// 	{
-// 		printf("EMPTY STACK\n");
-// 		printf("----\n    %c\n", 'b');
-// 		printf("---------------\n");
-//         return (0);
-// 	}
-// 	tmp_b = (*stack_b);
-//     do
-//     {
-// 		printf("[%zu] %d\t\t\t[%zu] %d\n", tmp->index, tmp->content, tmp_b->index, tmp_b->content);
-//         i++;
-//         tmp = tmp->next;
-// 		tmp_b = tmp_b->next;
-//     }
-// 	while (tmp != (*stack) && tmp_b != (*stack_b));
-// 	printf("----\n    %c\t\t\t----\n    %c\n", 'a', 'b');
-// 	printf("---------------\n");
-// 	return (i);
-// }
 
 t_list	*create_stacks(int option, char **argv)
 {
@@ -78,7 +49,7 @@ t_list	*create_stacks(int option, char **argv)
     stack_a->next = stack_a;
 	stack_a->prev = stack_a;
     if (!stack_a || !ft_strlen(argv[1]))
-       return (&(t_list){NULL, 0, 0, ' ', NULL});
+       return (&(t_list){NULL, 0, 0, ' ', 0, NULL});
     if (option == 2)
 	{
 		i = 0;
@@ -92,17 +63,14 @@ t_list	*create_stacks(int option, char **argv)
     while (elem[i])
 	{
 		tmp = ft_lstnew(ft_atoi(elem[i]));
-		if (!tmp)
-			return (&(t_list){NULL, 0, 0, ' ', NULL});
-        if (ft_lstadd_back(&stack_a, tmp, i + (option == 2)))
+        if (!tmp || ft_lstadd_back(&stack_a, tmp, i + (option == 2)))
 		{
 			free_stack(&stack_a);
-			return (&(t_list){NULL, 0, 0, ' ', NULL});
+			return (&(t_list){NULL, 0, 0, ' ', 0, NULL});
 		}
 		tmp = NULL;
 		i++;
 	}
-
     return (stack_a);
 }
 
@@ -163,3 +131,8 @@ int main(int argc, char **argv)
 	free_stack(&stack_a);
 	return (0);
 }
+
+/*
+Evaluate the indexes of the numbers if they were already sorted and then sort based on that.
+e.g., ./push_swap 1000000 1 2 500 because 4 1 2 3. this lessens the number of iterations you do
+*/

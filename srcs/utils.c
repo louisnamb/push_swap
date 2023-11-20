@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:50:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/15 12:27:50 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:53:00 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ int    is_repeating(t_list **stack, t_list *new_node)
 	}
 	return (0);
 }
+
+// void	expected_sort(t_list **sa, t_list **sb, t_gen *main)
+// {
+// 	int
+// 	return ;
+// }
 
 int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
 {
