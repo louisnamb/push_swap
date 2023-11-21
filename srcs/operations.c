@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/20 16:02:00 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:46:07 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ void	reverse_rotate(t_list **stack_a, t_gen *main, int yes)
 void    both(t_list **sa, t_list **sb, t_gen *m, int which)
 {
 	const char	operations[3][4] = {"rrr", "ss", "rr"};
+
 	if (which == 0)
 	{
 		reverse_rotate(sa, m, 0);

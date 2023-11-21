@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/20 16:02:53 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:38:16 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	radix(t_list **sa, t_list **sb, t_gen *main, int bitmask)
 	int		a_len;
 	int		b_len;
 
-	if (!sa || !(*sa))
-		return ;
+//	if (!sa || !(*sa))
+//		return ;
 	a_len = stack_len(sa, main);
 	b_len = stack_len(sb, main);
 	while (b_len)
@@ -80,7 +80,7 @@ void    sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
 		sort_three(stack_a, stack_b, main);
 	else
 	{
-		while (num_bits > 0 && main->len != stack_len(stack_b, main))
+		while (num_bits > 0)// && main->len != stack_len(stack_b, main))
 		{
 		//	printf("\x1b[32m---------------\x1b[0m\n");
 		//	printf("\x1b[31m---------------\x1b[0m\n\n");
@@ -90,11 +90,15 @@ void    sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
 			num_bits--;
 		}
 		while (*stack_b)
+		{
+			(*stack_b)->content = (*stack_b)->content - main->offset;
 			push(stack_b, stack_a, main);
+		}
 		//else
 		//	printf("not sorted\n");
 	}
-	printlist(stack_a, main->len, 'a');
+	printf("offset: %d\n", main->offset);
+//	printlist(stack_a, main->len, 'a');
 	if (is_sorted(stack_a) && stack_len(stack_a, main) == main->len)
 		printf("\x1b[32mSUCCESS!\x1b[0m\n");
 	else
