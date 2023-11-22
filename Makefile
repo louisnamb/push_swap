@@ -28,7 +28,7 @@ PUSH_SWAPSRCS = srcs/ft_atoi.c srcs/ft_isascii.c srcs/ft_printf.c \
 				srcs/ft_strrchr.c srcs/push_swap.c srcs/ft_isalpha.c \
 				srcs/ft_lstnew.c srcs/ft_split.c srcs/ft_strlcpy.c \
 				srcs/ft_strtrim.c srcs/putchars.c srcs/ft_lstlast.c \
-				srcs/sort.c srcs/operations.c srcs/utils.c
+				srcs/sort.c srcs/operations.c srcs/utils.c srcs/utils2.c
 
 OBJS = $(PUSH_SWAPSRCS:.c=.o)
 
