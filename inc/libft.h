@@ -41,15 +41,9 @@ void		ft_bzero(void *s, size_t n);
 
 void		*ft_calloc(size_t count, size_t size);
 
-int			ft_isalnum(int c);
-
-int			ft_isalpha(int c);
-
 int			ft_isascii(int c);
 
 int			ft_isdigit(int c);
-
-int			ft_isprint(int c);
 
 char		*ft_itoa(int n);
 
@@ -104,8 +98,6 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_tolower(int c);
 
 int			ft_toupper(int c);
-
-t_list		*ft_lstnew(int content);
 
 t_list		*ft_lstlast(t_list *lst);
 
