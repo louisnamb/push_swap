@@ -27,9 +27,7 @@ int	num_splits(const char *str, char c)
 		{
 			j++;
 			while (str[index] != c && str[index])
-			{
 				index++;
-			}	
 		}
 		else
 			index++;

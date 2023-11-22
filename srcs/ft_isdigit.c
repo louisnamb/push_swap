@@ -33,7 +33,8 @@ int main()
 
     c='+';
 
-    printf("\n\nResult when non-numeric character is passed: %d\n", isdigit(c));
+    printf("\n\nResult when non-numeric character is passed: %d\n", 
+    isdigit(c));
     printf("ft: Result when numeric character is passed: %d", ft_isdigit(c));
 
     return 0;

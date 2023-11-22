@@ -12,30 +12,32 @@
 
 #include "../inc/push_swap.h"
 
-void    free_stack(t_list **stack)
+void	free_stack(t_list **stack, t_gen *main)
 {
-	int     i;
-	t_list  *tmp;
-    t_list  *next;
+	int		i;
+	t_list	*next;
+	t_list	*current;
 
 	i = 1;
-	tmp = (*stack);
-	if (!stack || !*stack)
+	if (!*stack)
 		return ;
-	while (tmp != (*stack) || i == 1)
+	current = *stack;
+	while (current != (*stack) || i == 1)
 	{
-		next = tmp->next;
-        free(tmp);
-        tmp = next;
+		next = current->next;
+		free(current);
+		current = next;
 		i++;
 	}
-    return ;
+	(*stack) = NULL;
+	free(main);
+	return ;
 }
 
-int    is_repeating(t_list **stack, t_list *new_node)
+int	is_repeating(t_list **stack, t_list *new_node)
 {
-	int     i;
-	t_list  *tmp;
+	int		i;
+	t_list	*tmp;
 
 	i = 1;
 	tmp = (*stack);
@@ -44,23 +46,17 @@ int    is_repeating(t_list **stack, t_list *new_node)
 	while (tmp != (*stack) || i == 1)
 	{
 		i++;
-        if (new_node->content == tmp->content)
-            return (1);
+		if (new_node->content == tmp->content)
+			return (1);
 		tmp = tmp->next;
 	}
 	return (0);
 }
 
-// void	expected_sort(t_list **sa, t_list **sb, t_gen *main)
-// {
-// 	int
-// 	return ;
-// }
-
 int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
 {
-	int     i;
-	t_list  *tmp;
+	int		i;
+	t_list	*tmp;
 	int		prev_max;
 	int		curr_max;
 	int		tmp_data;
@@ -88,22 +84,42 @@ int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
 	return (prev_max);
 }
 
-int     stack_len(t_list **stack, t_gen *main)
+int	stack_len(t_list **stack, t_gen *main)
 {
-	int     i;
-	t_list  *tmp;
+	int		i;
+	t_list	*tmp;
 
 	i = 0;
 	(void)main;
 	if (!stack || !(*stack))
 		return (0);
 	tmp = *stack;
-	while (tmp != (*stack) || i == 0)// && tmp->next != tmp)// && i <= main->len)
+	while (tmp != (*stack) || i == 0)
 	{
-	//	printf("content: %d\n", tmp->content);
 		tmp = tmp->next;
 		i++;
 	}
-//	printf("stack_len - i: %d\n", i);
 	return (i);
+}
+
+int	is_sorted(t_list **stack_a)
+{
+	t_list	*tmp;
+	int		old;
+	int		i;
+
+	i = 1;
+	tmp = (*stack_a);
+	old = tmp->content;
+	if (!stack_a || !(*stack_a))
+		return (0);
+	while (tmp != (*stack_a) || i == 1)
+	{
+		i++;
+		if (tmp->content < old)
+			return (0);
+		old = tmp->content;
+		tmp = tmp->next;
+	}
+	return (1);
 }

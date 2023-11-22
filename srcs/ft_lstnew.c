@@ -20,16 +20,9 @@ t_list	*ft_lstnew(int content, t_gen *main)
 	node = malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
-	node->content = content + main->offset;
+	node->content = content + (int)main->offset;
 	node->next = NULL;
-	printf("new: offset: %d\n", main->offset);
 	node->id = 'a';
 	node->prev = NULL;
 	return (node);
 }
-
-
-/*
-get 1 more chickenpox vaccine (varicella)
-one more hepatatis b vaccine
-*/
