@@ -6,12 +6,31 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:51:58 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/10/30 15:06:22 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:08:31 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 #include <limits.h>
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	return (0);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	chckspace(int c)
 {

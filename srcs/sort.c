@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/21 15:38:16 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:10:32 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	offset(t_list **stack_a, t_list **stack_b, t_gen *main)
 
 void	sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
 {
-	int bitmask;
+	int	bitmask;
 	int	num_bits;
 
 	bitmask = 1;

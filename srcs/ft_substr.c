@@ -6,11 +6,46 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 10:14:25 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/10/30 15:06:22 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:03:05 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (*src && i + 1 < size)
+	{
+		*dst++ = *src++;
+		++i;
+	}
+	if (i < size)
+		*dst = 0;
+	while (*src++)
+		++i;
+	return (i);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*s2;
+	int		p;
+
+	p = 0;
+	s2 = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + 1));
+	if (!s2)
+		return (0);
+	while (s1[p])
+	{
+		s2[p] = s1[p];
+		p++;
+	}
+	s2[p] = 0;
+	return (s2);
+}
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {

@@ -1,16 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   which.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/01 12:15:57 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:17:50 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+static int	skip_whitespaces(char *str, int *i, int *sign)
+{
+	while (str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\v'
+		|| str[*i] == '\r' || str[*i] == '\f')
+		(*i)++;
+	if ((str[*i] == '+' || str[*i] == '-') && str[*i + 1])
+	{
+		if ((str[*i]) == '-')
+			*sign *= -1;
+		(*i)++;
+	}
+	return (*i);
+}
+
+static int	check_num(long num, int sign, int digit)
+{
+	if (sign == -1)
+		return (((num * -1) <= INT_MIN / 10)
+			&& ((digit * sign) < INT_MIN % 10));
+	else
+		return (num >= INT_MAX / 10 && digit > INT_MAX % 10);
+}
 
 int	ft_atol(char	*str, t_gen *main)
 {
@@ -22,7 +45,7 @@ int	ft_atol(char	*str, t_gen *main)
 	sign = 1;
 	i = 0;
 	num = 0;
-	skip_whitespaces(str, i, sign);
+	skip_whitespaces(str, &i, &sign);
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
@@ -32,7 +55,7 @@ int	ft_atol(char	*str, t_gen *main)
 				return (1);
 			num = num * 10 + digit;
 		}
-		else if (skip_whitespaces(str, sign, i))
+		else if (skip_whitespaces(str, &i, &sign))
 			break ;
 		else
 			return (1);
@@ -64,27 +87,4 @@ void	update_index(t_list **stack, t_gen *main)
 		i++;
 	}
 	return ;
-}
-
-int	skip_whitespaces(char *str, int i, int *sign)
-{
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v'
-		|| str[i] == '\r' || str[i] == '\f');
-		*i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if ((str[i]) == '-')
-			*sign *= -1;
-		*i++;
-	}
-	return (i);
-}
-
-int	check_num(long num, int sign, int digit)
-{
-	if (sign == -1)
-		return (((num * -1) <= INT_MIN / 10)
-			&& ((digit * sign) < INT_MIN % 10));
-	else
-		return (num >= INT_MAX / 10 && digit > INT_MAX % 10);
 }

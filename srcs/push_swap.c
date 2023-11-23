@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/21 15:28:09 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:47:20 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,6 @@ int		printlist(t_list **stack, int len, int a_or_b)
 	printf("----\n	%c (%d)\n", a_or_b, a_or_b == 'a');
 	return (i);
 }
+56 45 7 34 64 -5
+"54 65 7 352 -5"
 */

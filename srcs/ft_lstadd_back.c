@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/21 15:24:33 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:07:08 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,18 @@ int	ft_lstadd_back(t_list **start, t_list *new_node, size_t index)
 		(*start)->prev = new_node;
 	}
 	return (0);
+}
+
+t_list	*ft_lstnew(int content, t_gen *main)
+{
+	t_list	*node;
+
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content + (int)main->offset;
+	node->next = NULL;
+	node->id = 'a';
+	node->prev = NULL;
+	return (node);
 }
