@@ -6,11 +6,42 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 11:47:20 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:00:53 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+void	find_min_max(t_list *minmax, t_list **sa, t_list **sb, t_gen *main)
+{
+	if (minmax->index > ((*sa)->prev->index / 2) + 1)
+	{
+		while (minmax != (*sa))
+			reverse_rotate(sa, main, 1);
+	}
+	else
+	{
+		while (minmax != (*sa))
+			rotate(sa, sb, main, 1);
+	}
+//	printlist(sa, main->len, (*sa)->id);
+	return ;
+}
+
+t_list	*initialize_stack_a(size_t i, char **elem, t_gen *main)
+{
+	t_list	*stack_a;
+
+	stack_a = malloc(sizeof(t_list));
+	if (!stack_a)
+		return (&(t_list){NULL, 0, 0, ' ', NULL});
+	stack_a->next = stack_a;
+	stack_a->content = ft_atoi(elem[i]) + main->offset;
+	stack_a->prev = stack_a;
+	stack_a->index = 1;
+	stack_a->id = 'a';
+	return (stack_a);
+}
 
 t_list	*create_stacks(int option, char **argv, t_gen *main)
 {
@@ -20,11 +51,6 @@ t_list	*create_stacks(int option, char **argv, t_gen *main)
 	char	**elem;
 
 	i = 1;
-	stack_a = malloc(sizeof(t_list));
-	stack_a->next = stack_a;
-	stack_a->prev = stack_a;
-	if (!stack_a || !ft_strlen(argv[1]))
-		return (&(t_list){NULL, 0, 0, ' ', NULL});
 	if (option == 2)
 	{
 		i = 0;
@@ -32,18 +58,15 @@ t_list	*create_stacks(int option, char **argv, t_gen *main)
 	}
 	else
 		elem = argv;
-	stack_a->content = ft_atoi(elem[i++]) + main->offset;
-	stack_a->index = 1;
-	stack_a->id = 'a';
+	stack_a = initialize_stack_a(i, elem, main);
+	i++;
+	if (!stack_a || !ft_strlen(argv[1]))
+		return (&(t_list){NULL, 0, 0, ' ', NULL});
 	while (elem[i])
 	{
 		tmp = ft_lstnew(ft_atoi(elem[i]), main);
-		if (!tmp || ft_lstadd_back(&stack_a, tmp, i + (option == 2)))
-		{
-			free_stack(&stack_a, main);
-			return (&(t_list){NULL, 0, 0, ' ', NULL});
-		}
-		tmp = NULL;
+		if (!tmp || ft_lstadd_back(&stack_a, &tmp, i + (option == 2)))
+			return (free_stack(&stack_a, main));
 		i++;
 	}
 	return (stack_a);
@@ -86,20 +109,21 @@ int	main(int argc, char **argv)
 	main->len = error_check(argv, argc, main);
 	if (argc <= 1 || !argv || main->len <= 0)
 	{
-		ft_printf("Error\n");
+		ft_printf("Invalid argumens\n");
 		exit(1);
 	}
 	stack_a = create_stacks((argc == 2) + 1, argv, main);
-	if (!stack_a->prev && !stack_a->next && !stack_a->content && !stack_a->index)
+	if (!stack_a->prev && !stack_a->next && !stack_a->index)
 	{
-		ft_printf("Error\n");
+		ft_printf("here\n");
 		exit(1);
 	}
+//	printlist(&stack_a, main->len, 'a');
 	sort_which(&stack_a, &stack_b, main);
 	free_stack(&stack_a, main);
 	return (0);
 }
-/*
+
 int		printlist(t_list **stack, int len, int a_or_b)
 {
 	int	 i;
@@ -124,6 +148,6 @@ int		printlist(t_list **stack, int len, int a_or_b)
 	printf("----\n	%c (%d)\n", a_or_b, a_or_b == 'a');
 	return (i);
 }
-56 45 7 34 64 -5
-"54 65 7 352 -5"
-*/
+//56 45 7 34 64 -5
+//"54 65 7 352 -5"
+

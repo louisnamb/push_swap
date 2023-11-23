@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/21 13:46:07 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:54:21 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,7 @@ void	push(t_list **stack_a, t_list **stack_b, t_gen *main)
 	}
 	else
 		*stack_a = NULL;
-	if ((*stack_b) == NULL)
-	{
-		tmp->prev = tmp;
-		tmp->next = tmp;
-		tmp->id = 'b';
-	}
-	else
-	{
-		tmp->next = (*stack_b);
-		tmp->prev = (*stack_b)->prev;
-		tmp->id = (*stack_b)->id;
-		(*stack_b)->prev->next = tmp;
-		(*stack_b)->prev = tmp;
-	}
-	(*stack_b) = tmp;
+	updatestackb(&tmp, stack_b);
 	if (stack_len(stack_a, main) > 1)
 		update_index(stack_a, main);
 	update_index(stack_b, main);

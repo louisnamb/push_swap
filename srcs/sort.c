@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 13:10:32 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:13:50 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	radix(t_list **sa, t_list **sb, t_gen *main, int bitmask)
 
 void	sort_three(t_list **sa, t_list **sb, t_gen *main)
 {
+	if (is_sorted(sa))
+		return ;
 	if ((*sa)->content < (*sa)->prev->content)
 	{
 		swap(sa, sb, main);
@@ -64,6 +66,11 @@ void	sort_three(t_list **sa, t_list **sb, t_gen *main)
 	return ;
 }
 
+void	sort_four(t_list **sa, t_list **sb, t_gen *main)
+{
+
+}
+
 void	sort_five(t_list **sa, t_list **sb, t_gen *main)
 {
 	int		i;
@@ -75,44 +82,29 @@ void	sort_five(t_list **sa, t_list **sb, t_gen *main)
 	min = (*sa);
 	max = (*sa);
 	tmp = (*sa);
-	while (tmp != (*sa) || i == 1)
+	while (tmp != (*sa) || i++ == 1)
 	{
-		i++;
 		if (tmp->content > max->content)
 			max = tmp;
 		if (tmp->content < min->content)
 			min = tmp;
 		tmp = tmp->next;
 	}
-	if (min->index > ((*sa)->prev->index / 2) + 1)
-	{
-		while (min != (*sa))
-			reverse_rotate(sa, main, 1);
-	}
-	else
-	{
-		while (min != (*sa))
-			rotate(sa, sb, main, 1);
-	}
-	if (max->index >= ((*sa)->prev->index / 2) + 1)
-	{
-		while (max != (*sa))
-			reverse_rotate(sa, main, 1);
-	}
-	else
-	{
-		while (max != (*sa))
-			rotate(sa, sb, main, 1);
-	}
+	find_min_max(min, sa, sb, main);
 	push(sa, sb, main);
+	find_min_max(max, sa, sb, main);
 	if ((*sa)->prev->index == 4)
 		push(sa, sb, main);
+	printlist(sa, main->len, 'a');
+	printlist(sb, main->len, 'b');
 	sort_three(sa, sb, main);
 	push(sb, sa, main);
-	push(sb, sa, main);
 	rotate(sa, sb, main, 1);
+	push(sb, sa, main);
 	return ;
 }
+
+
 
 void	offset(t_list **stack_a, t_list **stack_b, t_gen *main)
 {
@@ -164,12 +156,12 @@ void	sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
 		}
 	}
 	offset(stack_a, stack_b, main);
-	return ;
-}
-/*
 	if (is_sorted(stack_a) && stack_len(stack_a, main) == main->len)
 		printf("\x1b[32mSUCCESS!\x1b[0m\n");
 	else
 		printf("\x1b[31mFAILURE!\x1b[0m\n");
 	printlist(stack_a, main->len, 'a');
+	return ;
+}
+/*
 */

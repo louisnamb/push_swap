@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 13:17:50 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:54:23 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,26 @@ void	update_index(t_list **stack, t_gen *main)
 		i++;
 	}
 	return ;
+}
+
+void updatestackb(t_list **stack_a, t_list **stack_b)
+{
+	t_list *tmp;
+
+	tmp = *stack_a;
+	if ((*stack_b) == NULL)
+	{
+		tmp->prev = tmp;
+		tmp->next = tmp;
+		tmp->id = 'b';
+	}
+	else
+	{
+		tmp->next = (*stack_b);
+		tmp->prev = (*stack_b)->prev;
+		tmp->id = (*stack_b)->id;
+		(*stack_b)->prev->next = tmp;
+		(*stack_b)->prev = tmp;
+	}
+	*stack_b = tmp;
 }

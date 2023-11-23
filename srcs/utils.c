@@ -6,13 +6,13 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:50:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/20 15:53:00 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:23:23 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	free_stack(t_list **stack, t_gen *main)
+t_list	*free_stack(t_list **stack, t_gen *main)
 {
 	int		i;
 	t_list	*next;
@@ -20,7 +20,7 @@ void	free_stack(t_list **stack, t_gen *main)
 
 	i = 1;
 	if (!*stack)
-		return ;
+		return (&(t_list){NULL, 0, 0, ' ', NULL});
 	current = *stack;
 	while (current != (*stack) || i == 1)
 	{
@@ -31,7 +31,7 @@ void	free_stack(t_list **stack, t_gen *main)
 	}
 	(*stack) = NULL;
 	free(main);
-	return ;
+	return (&(t_list){NULL, 0, 0, ' ', NULL});
 }
 
 int	is_repeating(t_list **stack, t_list *new_node)
@@ -72,11 +72,8 @@ int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
 	{
 		curr_max = 0;
 		tmp_data = tmp->content;
-		while (tmp_data > 0)
-		{
-			tmp_data = tmp_data >> 1;
-			curr_max++;
-		}
+		while (tmp_data > 0 && curr_max++)
+			tmp_data >>= 1;
 		if (curr_max > prev_max)
 			prev_max = curr_max;
 		tmp = tmp->next;
