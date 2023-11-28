@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:50:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 15:23:23 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:49:38 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	biggest_node(t_list **sa, t_list **sb, t_gen *main)
 	{
 		curr_max = 0;
 		tmp_data = tmp->content;
-		while (tmp_data > 0 && curr_max++)
+		while (tmp_data > 0 && ++curr_max)
 			tmp_data >>= 1;
 		if (curr_max > prev_max)
 			prev_max = curr_max;

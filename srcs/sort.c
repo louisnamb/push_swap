@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 16:13:50 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:30:08 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,24 @@ void	sort_three(t_list **sa, t_list **sb, t_gen *main)
 
 void	sort_four(t_list **sa, t_list **sb, t_gen *main)
 {
+	int		i;
+	t_list	*tmp;
+	t_list	*min;
 
+	i = 1;
+	min = (*sa);
+	tmp = (*sa);
+	while (tmp != (*sa) || i++ == 1)
+	{
+		if (tmp->content < min->content)
+			min = tmp;
+		tmp = tmp->next;
+	}
+	find_min_max(min, sa, sb, main);
+	push(sa, sb, main);
+	sort_three(sa, sb, main);
+	push(sb, sa, main);
+	return ;
 }
 
 void	sort_five(t_list **sa, t_list **sb, t_gen *main)
@@ -92,45 +109,9 @@ void	sort_five(t_list **sa, t_list **sb, t_gen *main)
 	}
 	find_min_max(min, sa, sb, main);
 	push(sa, sb, main);
-	find_min_max(max, sa, sb, main);
-	if ((*sa)->prev->index == 4)
-		push(sa, sb, main);
-	printlist(sa, main->len, 'a');
-	printlist(sb, main->len, 'b');
-	sort_three(sa, sb, main);
-	push(sb, sa, main);
-	rotate(sa, sb, main, 1);
+	sort_four(sa, sb, main);
 	push(sb, sa, main);
 	return ;
-}
-
-
-
-void	offset(t_list **stack_a, t_list **stack_b, t_gen *main)
-{
-	t_list	*tmp;
-	int		i;
-
-	i = 1;
-	tmp = (*stack_a);
-	if (main->len > 6)
-	{
-		(*stack_a)->content -= main->offset;
-		while (*stack_b)
-		{
-			(*stack_b)->content -= main->offset;
-			push(stack_b, stack_a, main);
-		}
-	}
-	else
-	{
-		while (tmp != (*stack_a) || i == 1)
-		{
-			tmp->content -= main->offset;
-			tmp = tmp->next;
-			i++;
-		}
-	}
 }
 
 void	sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
@@ -140,11 +121,13 @@ void	sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
 
 	bitmask = 1;
 	num_bits = biggest_node(stack_a, stack_b, main);
-	if (is_sorted(stack_a))
+	if (is_sorted(stack_a) || main->len == 1)
 		return ;
 	if (main->len <= 3)
 		sort_three(stack_a, stack_b, main);
-	else if (main->len <= 5)
+	else if (main->len == 4)
+		sort_four(stack_a, stack_b, main);
+	else if (main->len == 5)
 		sort_five(stack_a, stack_b, main);
 	else
 	{
@@ -156,12 +139,12 @@ void	sort_which(t_list **stack_a, t_list **stack_b, t_gen *main)
 		}
 	}
 	offset(stack_a, stack_b, main);
+	return ;
+}
+/*
 	if (is_sorted(stack_a) && stack_len(stack_a, main) == main->len)
 		printf("\x1b[32mSUCCESS!\x1b[0m\n");
 	else
 		printf("\x1b[31mFAILURE!\x1b[0m\n");
 	printlist(stack_a, main->len, 'a');
-	return ;
-}
-/*
 */

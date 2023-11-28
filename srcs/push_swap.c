@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:37:09 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 16:00:53 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:34:34 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	find_min_max(t_list *minmax, t_list **sa, t_list **sb, t_gen *main)
 		while (minmax != (*sa))
 			rotate(sa, sb, main, 1);
 	}
-//	printlist(sa, main->len, (*sa)->id);
 	return ;
 }
 
@@ -109,45 +108,40 @@ int	main(int argc, char **argv)
 	main->len = error_check(argv, argc, main);
 	if (argc <= 1 || !argv || main->len <= 0)
 	{
-		ft_printf("Invalid argumens\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
 	stack_a = create_stacks((argc == 2) + 1, argv, main);
 	if (!stack_a->prev && !stack_a->next && !stack_a->index)
 	{
-		ft_printf("here\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
-//	printlist(&stack_a, main->len, 'a');
 	sort_which(&stack_a, &stack_b, main);
 	free_stack(&stack_a, main);
 	return (0);
 }
+// int		printlist(t_list **stack, int len, int a_or_b)
+// {
+// 	int	 i;
+// 	t_list  *tmp;
 
-int		printlist(t_list **stack, int len, int a_or_b)
-{
-	int	 i;
-	t_list  *tmp;
-
-	i = 0;
-	(void)len;
-	tmp = (*stack);
-	if (!stack || !*stack)
-	{
-		printf("EMPTY STACK\n");
-		printf("----\n	%c\n", a_or_b);
-		return (0);
-	}
-	do
-	{
-		printf("[%zu] %d (%c)\n", tmp->index, tmp->content, tmp->id);
-		i++;
-		tmp = tmp->next;
-	}
-	while (tmp != (*stack));
-	printf("----\n	%c (%d)\n", a_or_b, a_or_b == 'a');
-	return (i);
-}
-//56 45 7 34 64 -5
-//"54 65 7 352 -5"
-
+// 	i = 0;
+// 	(void)len;
+// 	tmp = (*stack);
+// 	if (!stack || !*stack)
+// 	{
+// 		printf("EMPTY STACK\n");
+// 		printf("----\n	%c\n", a_or_b);
+// 		return (0);
+// 	}
+// 	do
+// 	{
+// 		printf("[%zu] %d (%c)\n", tmp->index, tmp->content, tmp->id);
+// 		i++;
+// 		tmp = tmp->next;
+// 	}
+// 	while (tmp != (*stack));
+// 	printf("----\n	%c (%d)\n", a_or_b, a_or_b == 'a');
+// 	return (i);
+// }

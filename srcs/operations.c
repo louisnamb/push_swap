@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:08:48 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 15:54:21 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:33:08 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,24 @@ void	reverse_rotate(t_list **stack_a, t_gen *main, int yes)
 	if (yes)
 		ft_printf("rr%c\n", (*stack_a)->id);
 	return ;
+}
+
+void	offset(t_list **stack_a, t_list **stack_b, t_gen *main)
+{
+	t_list	*tmp;
+	int		i;
+
+	i = 1;
+	if (main->len >= 6)
+	{
+		while (*stack_b)
+			push(stack_b, stack_a, main);
+	}
+	tmp = (*stack_a);
+	while (tmp != (*stack_a) || i == 1)
+	{
+		tmp->content -= main->offset;
+		tmp = tmp->next;
+		i++;
+	}
 }

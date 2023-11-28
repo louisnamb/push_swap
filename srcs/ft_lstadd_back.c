@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 14:59:56 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:30:25 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,18 @@ t_list	*ft_lstnew(int content, t_gen *main)
 	node->id = 'a';
 	node->prev = NULL;
 	return (node);
+}
+
+int	helper_func(int sign, char c, long *num)
+{
+	int	digit;
+
+	digit = c - '0';
+	if (check_num(*num, sign, digit))
+	{
+		exit(1);
+		return (1);
+	}
+	(*num) = (*num) * 10 + digit;
+	return (0);
 }
