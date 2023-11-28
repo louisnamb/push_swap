@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:21:17 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 15:15:50 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:58:12 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	sort_five(t_list **sa, t_list **sb, t_gen *main);
 void	update_index(t_list **stack, t_gen *main);
 int	 is_sorted(t_list **stack_a);
 int	ft_atol(char	*str, t_gen *main);
+void	offset(t_list **stack_a, t_list **stack_b, t_gen *main);
+int	check_num(long num, int sign, int digit);
+int	helper_func(int sign, char c, long *num);
 int	 biggest_node(t_list **sa, t_list **sb, t_gen *main);
 t_list	*free_stack(t_list **stack, t_gen *main);
 void	radix(t_list **sa, t_list **sb, t_gen *main, int bitmask);
