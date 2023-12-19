@@ -6,11 +6,11 @@
 #    By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 13:38:36 by lnambaji          #+#    #+#              #
-#    Updated: 2023/11/23 13:08:45 by lnambaji         ###   ########.fr        #
+#    Updated: 2023/12/19 15:09:00 by lnambaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Werror -Wextra -D BUFFER_SIZE=1024 -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -D BUFFER_SIZE=1024 -g
 
 SOURCES = srcs
 OBJECTS = objs
@@ -18,8 +18,6 @@ INCLUDES = inc
 
 PUSH_SWAPSRCS = srcs/ft_atoi.c srcs/ft_printf.c \
 				srcs/ft_substr.c \
-				srcs/ft_putchar_fd.c \
-				srcs/ft_putendl_fd.c \
 				srcs/ft_itoa.c srcs/ft_putnbr_fd.c \
 				srcs/hexchars.c \
 				srcs/ft_lstadd_back.c \
@@ -30,9 +28,9 @@ PUSH_SWAPSRCS = srcs/ft_atoi.c srcs/ft_printf.c \
 
 OBJS = $(PUSH_SWAPSRCS:.c=.o)
 
-EXECUTABLE = push_swap
+NAME = push_swap
 BINDIR = bin
-BIN = $(BINDIR)/$(EXECUTABLE)
+BIN = $(BINDIR)/$(NAME)
 
 RED = \033[0;31m
 DEFAULT = \033[0m
@@ -42,10 +40,10 @@ CYAN = \033[0;36m
 all: $(BIN)
 	@echo "$(GREEN)Successfully built push_swap!$(DEFAULT)"
 
-$(BIN): $(OBJS)
+$(BINDIR)/$(NAME): $(OBJS)
 	@ mkdir -p $(BINDIR)
 	@ echo "Linking $(BIN) from $(OBJS)"
-	@ $(CC) $(CFLAGS) $^ -o $(EXECUTABLE)
+	@ $(CC) $(CFLAGS) $^ -o $(BINDIR)/$(NAME)
 
 $(OBJECTS)/%.o: $(SOURCES)/%.c
 	@mkdir -p $(dir $@)
