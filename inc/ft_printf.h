@@ -6,20 +6,18 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:54:28 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/10/30 16:20:07 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:19:19 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "../inc/libft.h"
-#include "../inc/push_swap.h"
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include "../inc/libft.h"
+# include "../inc/push_swap.h"
 
 size_t			ft_strlen(const char *s);
 

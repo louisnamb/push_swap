@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:14:34 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 14:58:54 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:20:19 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define LIBFT_H
 
 # include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5000
@@ -27,7 +27,7 @@
 # endif
 
 typedef struct s_list
-{	
+{
 	struct s_list	*prev;
 	int				content;
 	size_t			index;
@@ -59,7 +59,7 @@ void		ft_putendl_fd(char *s, int fd);
 
 void		ft_putnbr_fd(int n, int fd);
 
-int		ft_putstr_fd(char *s, int fd);
+int			ft_putstr_fd(char *s, int fd);
 
 char		**ft_split(char const *s, char c);
 
