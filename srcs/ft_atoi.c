@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:51:58 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/23 13:08:31 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:42:26 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,18 @@ int	ft_atoi(const char *str)
 			return (0);
 	}
 	return ((int)ret);
+}
+
+void	free_elem(char **elem, int option)
+{
+	int	i;
+
+	i = -1;
+	if (!option)
+		return ;
+	while (elem[++i])
+		free(elem[i]);
+	free(elem);
 }
 /*
 #include <stdio.h>

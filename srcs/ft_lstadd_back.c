@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:28:50 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/28 14:30:25 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:34:23 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	ft_lstadd_back(t_list **start, t_list **new_node, size_t index)
 	if (!start || !(*new_node) || !(*start))
 		return (0);
 	if (is_repeating(start, (*new_node)))
+	{
+		free((*new_node));
 		return (1);
+	}
 	if (*start)
 	{
 		end = (*start)->prev;
@@ -49,13 +52,14 @@ t_list	*ft_lstnew(int content, t_gen *main)
 	return (node);
 }
 
-int	helper_func(int sign, char c, long *num)
+int	helper_func(int sign, char c, long *num, t_gen *main)
 {
 	int	digit;
 
 	digit = c - '0';
 	if (check_num(*num, sign, digit))
 	{
+		free(main);
 		exit(1);
 		return (1);
 	}

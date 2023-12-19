@@ -6,7 +6,7 @@
 /*   By: lnambaji <lnambaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:57:40 by lnambaji          #+#    #+#             */
-/*   Updated: 2023/11/28 14:29:45 by lnambaji         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:43:34 by lnambaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	skip_whitespaces(char *str, int *i, int *sign)
 			*sign *= -1;
 		(*i)++;
 	}
+	if (!ft_isdigit(str[*i]))
+		return (0);
 	return (*i);
 }
 
@@ -48,7 +50,7 @@ int	ft_atol(char *str, t_gen *main)
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
-			helper_func(sign, str[i], &num);
+			helper_func(sign, str[i], &num, main);
 		else if (skip_whitespaces(str, &i, &sign))
 			break ;
 		else
